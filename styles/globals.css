@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #ffffff;
+  --color-accent: #333333;
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Apple-style subtle shadow */
+  --shadow-brand: 0 2px 20px rgba(255, 255, 255, 0.04);
+}
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  /* More subtle glow for Apple aesthetic */
+  --brand-glow: rgba(255, 255, 255, 0.08);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  /* Cleaner, more subtle background */
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+
+  /* Subtle glass effect - Apple style */
+  .glass {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Very subtle text glow */
+  .text-glow {
+    text-shadow: 0 0 6px var(--brand-glow);
+  }
+}

@@ -1,0 +1,60 @@
+[
+  {
+    "id": 1,
+    "name": "Minimal Form",
+    "slug": "minimal-form",
+    "price": 45.00,
+    "category": "Pure",
+    "image": "/minimal_case_silhouette_1_1768766996532.png",
+    "description": "Essential protection. Pure geometric form with clean lines.",
+    "badge": "Signature"
+  },
+  {
+    "id": 2,
+    "name": "Outline Essence",
+    "slug": "outline-essence",
+    "price": 50.00,
+    "category": "Pure",
+    "image": "/minimal_case_silhouette_2_1768767008841.png",
+    "description": "Transparent elegance. Where form meets function.",
+    "badge": "New"
+  },
+  {
+    "id": 3,
+    "name": "Solid White",
+    "slug": "solid-white",
+    "price": 45.00,
+    "category": "Essential",
+    "image": "/minimal_case_silhouette_3_1768767023422.png",
+    "description": "Timeless simplicity. Clean white aesthetic."
+  },
+  {
+    "id": 4,
+    "name": "Clear Edge",
+    "slug": "clear-edge",
+    "price": 55.00,
+    "category": "Refined",
+    "image": "/minimal_case_silhouette_4_1768767035904.png",
+    "description": "Defined boundaries. Minimalist protection redefined.",
+    "badge": "Refined"
+  },
+  {
+    "id": 5,
+    "name": "Pure Form",
+    "slug": "pure-form",
+    "price": 60.00,
+    "category": "Essential",
+    "image": "/minimal_case_silhouette_5_1768767049160.png",
+    "description": "Absolute simplicity. Ultimate minimalism.",
+    "badge": "Core"
+  },
+  {
+    "id": 6,
+    "name": "Double Frame",
+    "slug": "double-frame",
+    "price": 55.00,
+    "category": "Refined",
+    "image": "/minimal_case_silhouette_6_1768767061453.png",
+    "description": "Layered elegance. Geometric precision."
+  }
+]
