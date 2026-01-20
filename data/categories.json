@@ -1,17 +1,17 @@
 [
     {
         "id": "pure",
-        "name": "Pure",
+        "name": "Pura",
         "slug": "pure"
     },
     {
         "id": "essential",
-        "name": "Essential",
+        "name": "Esencial",
         "slug": "essential"
     },
     {
         "id": "refined",
-        "name": "Refined",
+        "name": "Refinada",
         "slug": "refined"
     }
 ]

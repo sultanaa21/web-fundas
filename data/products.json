@@ -1,60 +1,60 @@
 [
   {
     "id": 1,
-    "name": "Minimal Form",
+    "name": "Forma Minimalista",
     "slug": "minimal-form",
-    "price": 45.00,
-    "category": "Pure",
+    "price": 45.0,
+    "category": "Pura",
     "image": "/minimal_case_silhouette_1_1768766996532.png",
-    "description": "Essential protection. Pure geometric form with clean lines.",
-    "badge": "Signature"
+    "description": "Protección esencial. Forma geométrica pura con líneas limpias.",
+    "badge": "Firma"
   },
   {
     "id": 2,
-    "name": "Outline Essence",
+    "name": "Esencia Outline",
     "slug": "outline-essence",
-    "price": 50.00,
-    "category": "Pure",
+    "price": 50.0,
+    "category": "Pura",
     "image": "/minimal_case_silhouette_2_1768767008841.png",
-    "description": "Transparent elegance. Where form meets function.",
-    "badge": "New"
+    "description": "Elegancia transparente. Donde la forma se encuentra con la función.",
+    "badge": "Nuevo"
   },
   {
     "id": 3,
-    "name": "Solid White",
+    "name": "Blanco Sólido",
     "slug": "solid-white",
-    "price": 45.00,
-    "category": "Essential",
+    "price": 45.0,
+    "category": "Esencial",
     "image": "/minimal_case_silhouette_3_1768767023422.png",
-    "description": "Timeless simplicity. Clean white aesthetic."
+    "description": "Simplicidad atemporal. Estética blanca y limpia."
   },
   {
     "id": 4,
-    "name": "Clear Edge",
+    "name": "Canto Transparente",
     "slug": "clear-edge",
-    "price": 55.00,
-    "category": "Refined",
+    "price": 55.0,
+    "category": "Refinada",
     "image": "/minimal_case_silhouette_4_1768767035904.png",
-    "description": "Defined boundaries. Minimalist protection redefined.",
-    "badge": "Refined"
+    "description": "Límites definidos. La protección minimalista rediseñada.",
+    "badge": "Refinada"
   },
   {
     "id": 5,
-    "name": "Pure Form",
+    "name": "Forma Pura",
     "slug": "pure-form",
-    "price": 60.00,
-    "category": "Essential",
+    "price": 60.0,
+    "category": "Esencial",
     "image": "/minimal_case_silhouette_5_1768767049160.png",
-    "description": "Absolute simplicity. Ultimate minimalism.",
-    "badge": "Core"
+    "description": "Simplicidad absoluta. El minimalismo definitivo.",
+    "badge": "Base"
   },
   {
     "id": 6,
-    "name": "Double Frame",
+    "name": "Marco Doble",
     "slug": "double-frame",
-    "price": 55.00,
-    "category": "Refined",
+    "price": 55.0,
+    "category": "Refinada",
     "image": "/minimal_case_silhouette_6_1768767061453.png",
-    "description": "Layered elegance. Geometric precision."
+    "description": "Elegancia por capas. Precisión geométrica."
   }
 ]

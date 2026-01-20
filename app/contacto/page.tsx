@@ -9,11 +9,11 @@ export default function ContactPage() {
                     {/* Contact Info */}
                     <div className="flex flex-col justify-center">
                         <h1 className="text-6xl md:text-8xl font-semibold tracking-tight text-white mb-10 leading-tight">
-                            Get In <br />
-                            <span className="text-white/40">Touch.</span>
+                            Ponte en <br />
+                            <span className="text-white/40">Contacto.</span>
                         </h1>
                         <p className="text-gray-400 text-lg mb-16 max-w-md font-normal leading-relaxed">
-                            Have a question about our collections or need support with your order? Our team is here to help you.
+                            ¿Tienes alguna pregunta sobre nuestras colecciones o necesitas ayuda con tu pedido? Nuestro equipo está aquí para ayudarte.
                         </p>
 
                         <div className="space-y-12">
@@ -22,7 +22,7 @@ export default function ContactPage() {
                                     <Mail className="h-6 w-6" />
                                 </div>
                                 <div>
-                                    <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-1">Email Us</p>
+                                    <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-1">Escríbenos</p>
                                     <p className="text-white text-base font-medium">support@caselyn.com</p>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@ export default function ContactPage() {
                                     <Phone className="h-6 w-6" />
                                 </div>
                                 <div>
-                                    <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-1">Call Us</p>
+                                    <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-1">Llámanos</p>
                                     <p className="text-white text-base font-medium">+1 (555) 000-CASELYN</p>
                                 </div>
                             </div>
@@ -40,8 +40,8 @@ export default function ContactPage() {
                                     <MapPin className="h-6 w-6" />
                                 </div>
                                 <div>
-                                    <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-1">Visit Studio</p>
-                                    <p className="text-white text-base font-medium">123 Minimalist Way, New York, NY</p>
+                                    <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-1">Visítanos</p>
+                                    <p className="text-white text-base font-medium">123 Calle Minimalista, New York, NY</p>
                                 </div>
                             </div>
                         </div>
@@ -52,10 +52,10 @@ export default function ContactPage() {
                         <form className="relative space-y-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-3">
-                                    <label className="text-xs font-semibold uppercase tracking-tight text-white/40 ml-1">Name</label>
+                                    <label className="text-xs font-semibold uppercase tracking-tight text-white/40 ml-1">Nombre</label>
                                     <input
                                         type="text"
-                                        placeholder="Your name"
+                                        placeholder="Tu nombre"
                                         className="w-full bg-white/[0.03] border border-white/5 rounded-2xl py-5 px-8 text-white text-sm placeholder:text-gray-700 focus:outline-none focus:border-white/30 transition-all"
                                     />
                                 </div>
@@ -63,21 +63,21 @@ export default function ContactPage() {
                                     <label className="text-xs font-semibold uppercase tracking-tight text-white/40 ml-1">Email</label>
                                     <input
                                         type="email"
-                                        placeholder="Your email"
+                                        placeholder="Tu email"
                                         className="w-full bg-white/[0.03] border border-white/5 rounded-2xl py-5 px-8 text-white text-sm placeholder:text-gray-700 focus:outline-none focus:border-white/30 transition-all"
                                     />
                                 </div>
                             </div>
                             <div className="space-y-3">
-                                <label className="text-xs font-semibold uppercase tracking-tight text-white/40 ml-1">Message</label>
+                                <label className="text-xs font-semibold uppercase tracking-tight text-white/40 ml-1">Mensaje</label>
                                 <textarea
                                     rows={5}
-                                    placeholder="How can we help?"
+                                    placeholder="¿En qué podemos ayudarte?"
                                     className="w-full bg-white/[0.03] border border-white/5 rounded-2xl py-5 px-8 text-white text-sm placeholder:text-gray-700 focus:outline-none focus:border-white/30 transition-all resize-none"
                                 />
                             </div>
                             <Button variant="primary" className="w-full h-16 text-base gap-3" type="button">
-                                <Send className="h-4 w-4" /> Send Message
+                                <Send className="h-4 w-4" /> Enviar Mensaje
                             </Button>
                         </form>
                     </div>

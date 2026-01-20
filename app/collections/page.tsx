@@ -27,7 +27,7 @@ export default function CollectionsPage() {
     return (
         <div className="container mx-auto px-6 py-32 md:px-16">
             <h1 className="text-5xl md:text-6xl font-semibold tracking-tight text-white mb-20 text-center">
-                Collections
+                Colecciones
             </h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -53,7 +53,7 @@ export default function CollectionsPage() {
                                 {collection.description}
                             </p>
                             <div className="inline-flex items-center gap-2.5 text-sm font-semibold tracking-tight text-white/70 group-hover:text-white transition-colors">
-                                Explore <ArrowRight className="h-4 w-4" />
+                                Explorar <ArrowRight className="h-4 w-4" />
                             </div>
                         </div>
                     </Link>

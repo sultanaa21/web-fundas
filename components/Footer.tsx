@@ -11,38 +11,40 @@ export default function Footer() {
                             CASELYN
                         </Link>
                         <p className="text-sm font-normal text-gray-500 leading-relaxed max-w-xs">
-                            Elevating daily essentials through minimalist design and premium protection.
+                            Elevando tus esenciales diarios a través de un diseño minimalista y protección premium.
                         </p>
                     </div>
                     <div>
-                        <h4 className="mb-6 text-xs font-semibold text-white">Shop</h4>
+                        <h4 className="mb-6 text-xs font-semibold text-white">Tienda</h4>
                         <ul className="flex flex-col gap-3 text-sm font-normal text-gray-500">
-                            <li><Link href="/fundas" className="hover:text-white transition-colors">Catalog</Link></li>
-                            <li><Link href="/collections" className="hover:text-white transition-colors">Collections</Link></li>
-                            <li><Link href="/novedades" className="hover:text-white transition-colors">New Arrivals</Link></li>
+                            <li><Link href="/fundas" className="hover:text-white transition-colors">Catálogo</Link></li>
+                            <li><Link href="/collections" className="hover:text-white transition-colors">Colecciones</Link></li>
+                            <li><Link href="/novedades" className="hover:text-white transition-colors">Novedades</Link></li>
                         </ul>
                     </div>
                     <div>
-                        <h4 className="mb-6 text-xs font-semibold text-white">Support</h4>
+                        <h4 className="mb-6 text-xs font-semibold text-white">Soporte</h4>
                         <ul className="flex flex-col gap-3 text-sm font-normal text-gray-500">
-                            <li><Link href="/contacto" className="hover:text-white transition-colors">Contact</Link></li>
-                            <li><Link href="/envios" className="hover:text-white transition-colors">Shipping</Link></li>
-                            <li><Link href="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
+                            <li><Link href="/contacto" className="hover:text-white transition-colors">Contacto</Link></li>
+                            <li><Link href="/envios" className="hover:text-white transition-colors">Envíos</Link></li>
+                            <li><Link href="/devoluciones" className="hover:text-white transition-colors">Devoluciones</Link></li>
+                            <li><Link href="/garantia" className="hover:text-white transition-colors">Garantía</Link></li>
+
                         </ul>
                     </div>
                     <div>
-                        <h4 className="mb-6 text-xs font-semibold text-white">Connect</h4>
+                        <h4 className="mb-6 text-xs font-semibold text-white">Conecta</h4>
                         <ul className="flex flex-col gap-3 text-sm font-normal text-gray-500">
-                            <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
-                            <li><a href="#" className="hover:text-white transition-colors">TikTok</a></li>
+                            <li><a href="https://www.instagram.com/caselynofficial?igsh=OTliOTJ4bWppYnZs" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a></li>
+                            <li><a href="https://www.tiktok.com/@caselyn.store?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">TikTok</a></li>
                         </ul>
                     </div>
                 </div>
                 <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-normal text-gray-600">
-                    <span>© {new Date().getFullYear()} CASELYN. All rights reserved.</span>
+                    <span>© {new Date().getFullYear()} CASELYN. Todos los derechos reservados.</span>
                     <div className="flex gap-8">
-                        <Link href="/privacidad" className="hover:text-gray-400 transition-colors">Privacy</Link>
-                        <Link href="/terminos" className="hover:text-gray-400 transition-colors">Terms</Link>
+                        <Link href="/privacidad" className="hover:text-gray-400 transition-colors">Privacidad</Link>
+                        <Link href="/terminos" className="hover:text-gray-400 transition-colors">Términos</Link>
                     </div>
                 </div>
             </div>

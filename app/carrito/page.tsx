@@ -46,9 +46,9 @@ export default function CartPage() {
         return (
             <div className="container mx-auto px-6 py-32 md:px-16">
                 <div className="flex items-center justify-between mb-20">
-                    <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">Your Cart</h1>
+                    <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">Tu Carrito</h1>
                     <Link href="/fundas" className="text-sm font-medium text-gray-500 hover:text-white transition-colors flex items-center gap-2">
-                        <ArrowLeft className="h-4 w-4" /> Continue Shopping
+                        <ArrowLeft className="h-4 w-4" /> Continuar Comprando
                     </Link>
                 </div>
 
@@ -58,15 +58,15 @@ export default function CartPage() {
                     </div>
 
                     <h2 className="relative text-3xl font-semibold tracking-tight text-white mb-6">
-                        Empty Sanctuary
+                        Santuario Vacío
                     </h2>
                     <p className="relative text-gray-400 max-w-sm mx-auto text-lg mb-12 font-normal leading-relaxed">
-                        Your collection is waiting for its first masterpiece. <br /> Elevate your carry now.
+                        Tu colección está esperando su primera obra maestra. <br /> Eleva tu estilo ahora.
                     </p>
 
                     <Link href="/fundas" className="relative mb-10">
                         <Button variant="primary" className="px-12 h-14 gap-3 text-base">
-                            <Zap className="h-4 w-4" /> Browse Catalog
+                            <Zap className="h-4 w-4" /> Explorar Catálogo
                         </Button>
                     </Link>
                 </div>
@@ -78,9 +78,9 @@ export default function CartPage() {
     return (
         <div className="container mx-auto px-6 py-32 md:px-16">
             <div className="flex items-center justify-between mb-20">
-                <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">Your Cart</h1>
+                <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">Tu Carrito</h1>
                 <Link href="/fundas" className="text-sm font-medium text-gray-500 hover:text-white transition-colors flex items-center gap-2">
-                    <ArrowLeft className="h-4 w-4" /> Continue Shopping
+                    <ArrowLeft className="h-4 w-4" /> Continuar Comprando
                 </Link>
             </div>
 
@@ -167,7 +167,7 @@ export default function CartPage() {
                 {/* Order Summary */}
                 <div className="h-fit">
                     <div className="bg-white/[0.02] border border-white/5 p-10 rounded-[32px]">
-                        <h2 className="text-xl font-semibold text-white mb-10 tracking-tight">Order Summary</h2>
+                        <h2 className="text-xl font-semibold text-white mb-10 tracking-tight">Resumen del Pedido</h2>
 
                         <div className="space-y-5 border-b border-white/5 pb-8">
                             <div className="flex justify-between text-sm font-medium">
@@ -175,8 +175,8 @@ export default function CartPage() {
                                 <span className="text-white">{total.toFixed(2)}€</span>
                             </div>
                             <div className="flex justify-between text-sm font-medium">
-                                <span className="text-gray-500">Shipping</span>
-                                <span className="text-white">Free</span>
+                                <span className="text-gray-500">Envío</span>
+                                <span className="text-white">Gratis</span>
                             </div>
                         </div>
 
@@ -187,7 +187,7 @@ export default function CartPage() {
 
                         <Link href="/checkout">
                             <Button variant="primary" className="w-full h-14 text-base">
-                                Proceed to Checkout
+                                Proceder al Pago
                             </Button>
                         </Link>
                     </div>

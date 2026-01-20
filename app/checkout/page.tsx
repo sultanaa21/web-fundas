@@ -114,20 +114,20 @@ export default function CheckoutPage() {
         return (
             <div className="container mx-auto px-6 py-32 md:px-16">
                 <div className="flex items-center justify-between mb-20">
-                    <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">Checkout</h1>
+                    <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">Finalizar Pedido</h1>
                 </div>
 
                 <div className="relative overflow-hidden rounded-[32px] bg-white/[0.02] border border-white/5 py-40 px-8 text-center flex flex-col items-center max-w-3xl mx-auto">
                     <div className="relative mb-12 w-28 h-28 rounded-full bg-white/[0.03] border border-white/5 flex items-center justify-center text-white/50">
                         <ShoppingBag className="h-12 w-12" />
                     </div>
-                    <h2 className="text-3xl font-semibold tracking-tight text-white mb-6">Cart is Empty</h2>
+                    <h2 className="text-3xl font-semibold tracking-tight text-white mb-6">El Carrito está Vacío</h2>
                     <p className="text-gray-400 max-w-sm mx-auto text-lg mb-12">
-                        Add some products before checkout.
+                        Añade algunos productos antes de finalizar tu pedido.
                     </p>
                     <Link href="/fundas">
                         <Button variant="primary" className="px-12 h-14 text-base">
-                            Browse Catalog
+                            Explorar Catálogo
                         </Button>
                     </Link>
                 </div>
@@ -139,13 +139,13 @@ export default function CheckoutPage() {
         <div className="container mx-auto px-6 py-32 md:px-16">
             <div className="flex items-center justify-between mb-20">
                 <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">
-                    Checkout
+                    Finalizar Pedido
                 </h1>
                 <Link
                     href="/carrito"
                     className="text-sm font-medium text-gray-500 hover:text-white transition-colors flex items-center gap-2"
                 >
-                    <ArrowLeft className="h-4 w-4" /> Return to Cart
+                    <ArrowLeft className="h-4 w-4" /> Volver al Carrito
                 </Link>
             </div>
 
@@ -158,49 +158,49 @@ export default function CheckoutPage() {
                                 1
                             </div>
                             <h2 className="text-2xl font-semibold tracking-tight text-white">
-                                Shipping Information
+                                Información de Envío
                             </h2>
                         </div>
 
                         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                             <input
                                 type="text"
-                                placeholder="First Name"
+                                placeholder="Nombre"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                                 className="bg-white/[0.03] border border-white/5 rounded-2xl p-5 text-white text-sm placeholder:text-gray-700 focus:outline-none focus:border-white/30 transition-all"
                             />
                             <input
                                 type="text"
-                                placeholder="Last Name"
+                                placeholder="Apellidos"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
                                 className="bg-white/[0.03] border border-white/5 rounded-2xl p-5 text-white text-sm placeholder:text-gray-700 focus:outline-none focus:border-white/30 transition-all"
                             />
                             <input
                                 type="email"
-                                placeholder="Email Address"
+                                placeholder="Correo Electrónico"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 className="bg-white/[0.03] border border-white/5 rounded-2xl p-5 text-white text-sm placeholder:text-gray-700 focus:outline-none focus:border-white/30 transition-all md:col-span-2"
                             />
                             <input
                                 type="text"
-                                placeholder="Shipping Address"
+                                placeholder="Dirección de Envío"
                                 value={shippingAddress}
                                 onChange={(e) => setShippingAddress(e.target.value)}
                                 className="bg-white/[0.03] border border-white/5 rounded-2xl p-5 text-white text-sm placeholder:text-gray-700 focus:outline-none focus:border-white/30 transition-all md:col-span-2"
                             />
                             <input
                                 type="text"
-                                placeholder="City"
+                                placeholder="Ciudad"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
                                 className="bg-white/[0.03] border border-white/5 rounded-2xl p-5 text-white text-sm placeholder:text-gray-700 focus:outline-none focus:border-white/30 transition-all"
                             />
                             <input
                                 type="text"
-                                placeholder="Postal Code"
+                                placeholder="Código Postal"
                                 value={postalCode}
                                 onChange={(e) => setPostalCode(e.target.value)}
                                 className="bg-white/[0.03] border border-white/5 rounded-2xl p-5 text-white text-sm placeholder:text-gray-700 focus:outline-none focus:border-white/30 transition-all"
@@ -214,7 +214,7 @@ export default function CheckoutPage() {
                                 2
                             </div>
                             <h2 className="text-2xl font-semibold tracking-tight text-white">
-                                Payment Method
+                                Método de Pago
                             </h2>
                         </div>
 
@@ -245,7 +245,7 @@ export default function CheckoutPage() {
                 <div className="h-fit space-y-8">
                     <div className="bg-white/[0.02] border border-white/5 p-10 rounded-[32px] relative overflow-hidden backdrop-blur-sm">
                         <h2 className="text-xl font-semibold text-white mb-10 tracking-tight">
-                            Order Summary
+                            Resumen del Pedido
                         </h2>
 
                         {/* Cart items */}
@@ -264,7 +264,7 @@ export default function CheckoutPage() {
                                     <div className="flex-1 min-w-0">
                                         <p className="text-sm font-medium text-white truncate">{item.name}</p>
                                         {item.model && <p className="text-xs text-gray-500">{item.model}</p>}
-                                        <p className="text-xs text-gray-500">Qty: {item.qty}</p>
+                                        <p className="text-xs text-gray-500">Cant: {item.qty}</p>
                                     </div>
                                     <p className="text-sm font-semibold text-white">{(item.price * item.qty).toFixed(2)}€</p>
                                 </div>
@@ -277,8 +277,8 @@ export default function CheckoutPage() {
                                 <span className="text-white">{subtotal.toFixed(2)}€</span>
                             </div>
                             <div className="flex justify-between text-sm font-medium">
-                                <span className="text-gray-500">Shipping</span>
-                                <span className="text-white">Free</span>
+                                <span className="text-gray-500">Envío</span>
+                                <span className="text-white">Gratis</span>
                             </div>
                         </div>
 
@@ -294,11 +294,11 @@ export default function CheckoutPage() {
                             disabled={isSubmitting}
                         >
                             <Lock className="h-4 w-4" />
-                            {isSubmitting ? "Processing..." : "Secure Payment"}
+                            {isSubmitting ? "Procesando..." : "Pago Seguro"}
                         </Button>
 
                         <p className="text-[10px] text-gray-500 mt-8 text-center flex items-center justify-center gap-2 font-medium tracking-tight">
-                            <ShieldCheck className="h-3.5 w-3.5 text-white/50" /> SSL Encrypted Transaction
+                            <ShieldCheck className="h-3.5 w-3.5 text-white/50" /> Transacción Encriptada SSL
                         </p>
                     </div>
 
@@ -307,8 +307,8 @@ export default function CheckoutPage() {
                             <Truck className="h-5 w-5 text-white" />
                         </div>
                         <p className="text-sm font-semibold text-white leading-tight">
-                            Free Express Shipping <br />
-                            <span className="text-gray-500 font-normal">Standard on all orders.</span>
+                            Envío Express Gratuito <br />
+                            <span className="text-gray-500 font-normal">Estándar en todos los pedidos.</span>
                         </p>
                     </div>
                 </div>

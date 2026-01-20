@@ -44,7 +44,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     return (
         <div className="container mx-auto px-6 py-24 md:px-16">
             <Link href="/fundas" className="inline-flex items-center gap-2.5 text-sm font-medium text-gray-500 hover:text-white mb-16 transition-colors">
-                <ArrowLeft className="h-4 w-4" /> Back to Catalog
+                <ArrowLeft className="h-4 w-4" /> Volver al Catálogo
             </Link>
 
             <div className="grid grid-cols-1 gap-24 lg:grid-cols-2">
@@ -88,14 +88,14 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                         <div className="flex items-center text-white/80">
                             {[1, 2, 3, 4, 5].map((s) => <Star key={s} className="h-4 w-4 fill-current" />)}
                         </div>
-                        <span className="text-sm font-medium text-gray-500 tracking-tight">12 Certified Reviews</span>
+                        <span className="text-sm font-medium text-gray-500 tracking-tight">12 Reseñas Certificadas</span>
                     </div>
 
                     <p className="mt-12 text-5xl font-semibold text-white tracking-tight">{product.price.toFixed(2)}€</p>
 
                     <div className="mt-12 space-y-10 border-b border-white/5 pb-16">
                         <div className="space-y-4">
-                            <h3 className="text-xs font-semibold text-white/40 tracking-tight uppercase">Description</h3>
+                            <h3 className="text-xs font-semibold text-white/40 tracking-tight uppercase">Descripción</h3>
                             <p className="text-gray-400 text-lg leading-relaxed font-normal">
                                 {product.description}
                             </p>
@@ -112,14 +112,14 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                             onClick={handleAddToCart}
                         >
                             <ShoppingCart className="h-5 w-5" />
-                            {addedToCart ? "Added ✓" : "Add to Cart"}
+                            {addedToCart ? "Añadido ✓" : "Añadir al Carrito"}
                         </Button>
                         <Button
                             className="w-full h-14 text-base font-medium"
                             variant="outline"
                             onClick={handleBuyNow}
                         >
-                            Buy Now
+                            Comprar Ahora
                         </Button>
                     </div>
 
@@ -129,8 +129,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                                 <Truck className="h-5 w-5 text-white/70" />
                             </div>
                             <div>
-                                <p className="text-sm font-semibold text-white tracking-tight">Express Delivery</p>
-                                <p className="text-xs text-gray-500 mt-1.5 font-normal">24/48h Worldwide Shipping</p>
+                                <p className="text-sm font-semibold text-white tracking-tight">Envío Express</p>
+                                <p className="text-xs text-gray-500 mt-1.5 font-normal">Envío 24/48h a todo el mundo</p>
                             </div>
                         </div>
                         <div className="flex items-start gap-5 p-6 rounded-[24px] bg-white/[0.02] border border-white/5 transition-colors hover:bg-white/[0.04]">
@@ -138,8 +138,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                                 <ShieldCheck className="h-5 w-5 text-white/70" />
                             </div>
                             <div>
-                                <p className="text-sm font-semibold text-white tracking-tight">Lifetime Warranty</p>
-                                <p className="text-xs text-gray-500 mt-1.5 font-normal">Guaranteed against any defects</p>
+                                <p className="text-sm font-semibold text-white tracking-tight">Garantía de por Vida</p>
+                                <p className="text-xs text-gray-500 mt-1.5 font-normal">Garantizado contra cualquier defecto</p>
                             </div>
                         </div>
                     </div>

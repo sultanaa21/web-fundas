@@ -15,10 +15,10 @@ export default function Header() {
             CASELYN
           </Link>
           <nav className="hidden md:flex items-center gap-10">
-            <Link href="/fundas" className="text-sm font-medium text-gray-500 hover:text-white transition-colors">Shop</Link>
-            <Link href="/collections" className="text-sm font-medium text-gray-500 hover:text-white transition-colors">Collections</Link>
-            <Link href="/about" className="text-sm font-medium text-gray-500 hover:text-white transition-colors">About</Link>
-            <Link href="/contacto" className="text-sm font-medium text-gray-500 hover:text-white transition-colors">Contact</Link>
+            <Link href="/fundas" className="text-sm font-medium text-gray-500 hover:text-white transition-colors">Tienda</Link>
+            <Link href="/collections" className="text-sm font-medium text-gray-500 hover:text-white transition-colors">Colecciones</Link>
+            <Link href="/about" className="text-sm font-medium text-gray-500 hover:text-white transition-colors">Sobre nosotros</Link>
+            <Link href="/contacto" className="text-sm font-medium text-gray-500 hover:text-white transition-colors">Contacto</Link>
           </nav>
         </div>
         <div className="flex items-center gap-1">
@@ -28,7 +28,7 @@ export default function Header() {
           {/* More subtle Apple-style cart button */}
           <Link href="/carrito" className="flex items-center gap-2.5 px-5 py-2.5 bg-white rounded-full hover:bg-gray-100 transition-all">
             <ShoppingCart className="h-4 w-4 text-black" />
-            <span className="text-sm font-medium text-black">Cart</span>
+            <span className="text-sm font-medium text-black">Carrito</span>
             {cartCount > 0 && (
               <span className="ml-0.5 h-5 w-5 flex items-center justify-center rounded-full bg-black text-xs font-semibold text-white animate-in zoom-in duration-300">
                 {cartCount}
