@@ -53,7 +53,7 @@ export default function Home() {
       <section className="container mx-auto px-6 md:px-16">
         <div className="flex items-end justify-between mb-16">
           <div className="text-left">
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">Colección Destacada</h2>
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">Artículos destacados</h2>
             <p className="mt-3 text-gray-500 font-normal">Diseños seleccionados para esta temporada.</p>
           </div>
           <Link href="/fundas" className="group flex items-center gap-2 text-sm font-normal text-gray-400 hover:text-white transition-colors">
