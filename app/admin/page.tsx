@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useToast } from "@/components/Toast";
 
 type OrderItem = { name: string; model?: string; qty: number; price: number };
 
@@ -25,6 +26,7 @@ const STATUS_LABELS: Record<string, string> = {
 const STATUS_OPTIONS = ["pendiente", "en_produccion", "enviado", "cancelado"] as const;
 
 export default function AdminPage() {
+    const { showToast } = useToast();
     const [token, setToken] = useState("");
     const [authed, setAuthed] = useState(false);
 
@@ -59,7 +61,7 @@ export default function AdminPage() {
             const data = await res.json().catch(() => null);
 
             if (!res.ok || !data?.ok) {
-                alert("❌ No autorizado o error cargando pedidos. Revisa el token.");
+                showToast("error", "No autorizado o error cargando pedidos.");
                 return;
             }
 
@@ -84,7 +86,7 @@ export default function AdminPage() {
 
             if (!res.ok || !data?.ok) {
                 console.log("UPDATE ERROR:", data);
-                alert("❌ Error actualizando estado. Mira consola (F12).");
+                showToast("error", "Error actualizando estado.");
                 return;
             }
 
@@ -92,8 +94,9 @@ export default function AdminPage() {
             setOrders((prev) =>
                 prev.map((o) => (o.id === id ? { ...o, status: newStatus } : o))
             );
+            showToast("success", "Estado actualizado");
         } catch (e) {
-            alert("❌ Error de red/servidor.");
+            showToast("error", "Error de red/servidor.");
         }
     }
 

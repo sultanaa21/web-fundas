@@ -7,9 +7,11 @@ import Button from "@/components/Button";
 import { CreditCard, Truck, Lock, ShieldCheck, ArrowLeft, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { getCart, clearCart, type CartItem } from "@/lib/cart";
+import { useToast } from "@/components/Toast";
 
 export default function CheckoutPage() {
     const router = useRouter();
+    const { showToast } = useToast();
 
     // Cart state
     const [items, setItems] = useState<CartItem[]>([]);
@@ -56,7 +58,7 @@ export default function CheckoutPage() {
 
         const errorMsg = validate();
         if (errorMsg) {
-            alert(`❌ ${errorMsg}`);
+            showToast("error", errorMsg);
             return;
         }
 
@@ -85,14 +87,14 @@ export default function CheckoutPage() {
 
             if (res.ok && data?.ok) {
                 clearCart();
-                alert("✅ Pedido creado y guardado en Supabase");
+                showToast("success", "Pedido creado correctamente");
                 router.push("/");
             } else {
-                alert("❌ Error creando pedido. Mira consola (F12).");
+                showToast("error", "Error creando pedido. Mira consola (F12).");
             }
         } catch (err) {
             console.error(err);
-            alert("❌ Error de red/servidor. Mira consola (F12).");
+            showToast("error", "Error de red/servidor.");
         } finally {
             setIsSubmitting(false);
         }

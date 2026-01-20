@@ -86,65 +86,79 @@ export default function CartPage() {
 
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
                 {/* Cart Items */}
-                <div className="lg:col-span-2 space-y-6">
+                <div className="lg:col-span-2 space-y-4">
                     {items.map((item) => (
                         <div
                             key={`${item.id}-${item.model ?? ""}`}
-                            className="flex gap-6 p-6 rounded-[24px] bg-white/[0.02] border border-white/5"
+                            className="flex flex-col sm:flex-row gap-4 p-4 sm:p-6 rounded-[20px] sm:rounded-[24px] bg-white/[0.02] border border-white/5"
                         >
-                            {/* Image */}
-                            <div className="relative w-24 h-24 rounded-2xl bg-white/[0.03] border border-white/5 overflow-hidden shrink-0">
-                                {item.image ? (
-                                    <Image
-                                        src={item.image}
-                                        alt={item.name}
-                                        fill
-                                        className="object-contain p-3"
-                                    />
-                                ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-white/30">
-                                        <ShoppingBag className="h-8 w-8" />
+                            {/* Top row: Image + Details + Remove */}
+                            <div className="flex gap-4 flex-1">
+                                {/* Image */}
+                                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl sm:rounded-2xl bg-white/[0.03] border border-white/5 overflow-hidden shrink-0">
+                                    {item.image ? (
+                                        <Image
+                                            src={item.image}
+                                            alt={item.name}
+                                            fill
+                                            className="object-contain p-2 sm:p-3"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-white/30">
+                                            <ShoppingBag className="h-6 w-6 sm:h-8 sm:w-8" />
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Details */}
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex items-start justify-between gap-2">
+                                        <h3 className="text-base sm:text-lg font-semibold text-white truncate">{item.name}</h3>
+                                        <button
+                                            onClick={() => handleRemove(item.id, item.model)}
+                                            className="text-gray-500 hover:text-red-400 transition-colors shrink-0 sm:hidden"
+                                        >
+                                            <Trash2 className="h-4 w-4" />
+                                        </button>
                                     </div>
-                                )}
+                                    {item.model && (
+                                        <p className="text-xs sm:text-sm text-gray-500 mt-0.5">{item.model}</p>
+                                    )}
+                                    <p className="text-base sm:text-lg font-semibold text-white mt-2">{item.price.toFixed(2)}€</p>
+                                </div>
                             </div>
 
-                            {/* Details */}
-                            <div className="flex-1 min-w-0">
-                                <h3 className="text-lg font-semibold text-white truncate">{item.name}</h3>
-                                {item.model && (
-                                    <p className="text-sm text-gray-500 mt-1">{item.model}</p>
-                                )}
-                                <p className="text-lg font-semibold text-white mt-3">{item.price.toFixed(2)}€</p>
-                            </div>
+                            {/* Bottom row: Qty + Total */}
+                            <div className="flex items-center justify-between sm:justify-end gap-4 pt-3 sm:pt-0 border-t border-white/5 sm:border-0">
+                                {/* Qty controls */}
+                                <div className="flex items-center gap-2 sm:gap-3">
+                                    <button
+                                        onClick={() => handleQtyChange(item.id, item.model, -1)}
+                                        className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-white hover:bg-white/[0.1] transition-colors"
+                                    >
+                                        <Minus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                                    </button>
+                                    <span className="text-white font-semibold w-6 sm:w-8 text-center text-sm sm:text-base">{item.qty}</span>
+                                    <button
+                                        onClick={() => handleQtyChange(item.id, item.model, 1)}
+                                        className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-white hover:bg-white/[0.1] transition-colors"
+                                    >
+                                        <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                                    </button>
+                                </div>
 
-                            {/* Qty controls */}
-                            <div className="flex items-center gap-3">
-                                <button
-                                    onClick={() => handleQtyChange(item.id, item.model, -1)}
-                                    className="w-9 h-9 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-white hover:bg-white/[0.1] transition-colors"
-                                >
-                                    <Minus className="h-4 w-4" />
-                                </button>
-                                <span className="text-white font-semibold w-8 text-center">{item.qty}</span>
-                                <button
-                                    onClick={() => handleQtyChange(item.id, item.model, 1)}
-                                    className="w-9 h-9 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center text-white hover:bg-white/[0.1] transition-colors"
-                                >
-                                    <Plus className="h-4 w-4" />
-                                </button>
-                            </div>
-
-                            {/* Item total + remove */}
-                            <div className="flex flex-col items-end justify-between">
-                                <button
-                                    onClick={() => handleRemove(item.id, item.model)}
-                                    className="text-gray-500 hover:text-red-400 transition-colors"
-                                >
-                                    <Trash2 className="h-5 w-5" />
-                                </button>
-                                <p className="text-lg font-semibold text-white">
-                                    {(item.price * item.qty).toFixed(2)}€
-                                </p>
+                                {/* Item total + remove (desktop) */}
+                                <div className="flex items-center gap-4">
+                                    <p className="text-base sm:text-lg font-semibold text-white">
+                                        {(item.price * item.qty).toFixed(2)}€
+                                    </p>
+                                    <button
+                                        onClick={() => handleRemove(item.id, item.model)}
+                                        className="text-gray-500 hover:text-red-400 transition-colors hidden sm:block"
+                                    >
+                                        <Trash2 className="h-5 w-5" />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     ))}
