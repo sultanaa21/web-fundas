@@ -28,7 +28,7 @@ export default function Home() {
             </div>
 
             <h1 className="text-7xl md:text-9xl font-semibold tracking-tight leading-none text-white select-none">
-              LAJOIA
+              CASELYN
             </h1>
 
             <div className="max-w-xl mx-auto mt-10">

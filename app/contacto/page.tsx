@@ -23,7 +23,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-1">Email Us</p>
-                                    <p className="text-white text-base font-medium">support@lajoia.com</p>
+                                    <p className="text-white text-base font-medium">support@caselyn.com</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-6 group">
@@ -32,7 +32,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-1">Call Us</p>
-                                    <p className="text-white text-base font-medium">+1 (555) 000-LAJOIA</p>
+                                    <p className="text-white text-base font-medium">+1 (555) 000-CASELYN</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-6 group">

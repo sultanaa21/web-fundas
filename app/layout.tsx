@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LAJOIA | Premium Case Aesthetics",
+  title: "CASELYN | Premium Case Aesthetics",
   description: "High-end protective cases for the modern minimalist. Designed for the future.",
 };
 

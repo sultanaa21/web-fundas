@@ -213,10 +213,10 @@ export default function AdminPage() {
                                                     <select
                                                         value={o.status}
                                                         onChange={(e) => updateStatus(o.id, e.target.value)}
-                                                        className="bg-white/[0.06] border border-white/10 rounded-xl px-3 py-2"
+                                                        className="bg-black text-white border border-white/10 rounded-xl px-3 py-2 focus:outline-none focus:ring-1 focus:ring-white/20"
                                                     >
                                                         {STATUS_OPTIONS.map((s) => (
-                                                            <option key={s} value={s}>
+                                                            <option key={s} value={s} className="bg-black text-white">
                                                                 {STATUS_LABELS[s]}
                                                             </option>
                                                         ))}

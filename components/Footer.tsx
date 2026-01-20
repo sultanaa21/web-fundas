@@ -8,7 +8,7 @@ export default function Footer() {
                     <div className="flex flex-col gap-6">
                         {/* Simplified Apple-style logo */}
                         <Link href="/" className="text-xl font-semibold tracking-tight text-white">
-                            LAJOIA
+                            CASELYN
                         </Link>
                         <p className="text-sm font-normal text-gray-500 leading-relaxed max-w-xs">
                             Elevating daily essentials through minimalist design and premium protection.
@@ -39,7 +39,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-normal text-gray-600">
-                    <span>© {new Date().getFullYear()} LAJOIA. All rights reserved.</span>
+                    <span>© {new Date().getFullYear()} CASELYN. All rights reserved.</span>
                     <div className="flex gap-8">
                         <Link href="/privacidad" className="hover:text-gray-400 transition-colors">Privacy</Link>
                         <Link href="/terminos" className="hover:text-gray-400 transition-colors">Terms</Link>

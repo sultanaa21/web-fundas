@@ -26,6 +26,14 @@ export function getCart(): CartItem[] {
 export function saveCart(items: CartItem[]): void {
     if (typeof window === "undefined") return;
     localStorage.setItem(KEY, JSON.stringify(items));
+    notifyCartUpdate();
+}
+
+/** Dispara un evento para que otros componentes sepan que el carrito cambió */
+function notifyCartUpdate() {
+    if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("cart_updated"));
+    }
 }
 
 /** 
@@ -77,6 +85,7 @@ export function updateQty(id: string, model: string | undefined, qty: number): C
 export function clearCart(): void {
     if (typeof window === "undefined") return;
     localStorage.removeItem(KEY);
+    notifyCartUpdate();
 }
 
 /** Calcula el total del carrito */
