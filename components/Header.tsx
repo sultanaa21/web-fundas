@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { ShoppingCart, Menu, Search } from "lucide-react";
+import { ShoppingCart, Search } from "lucide-react";
 import { useCartCount } from "@/hooks/useCartCount";
+import AuthButton from "./AuthButton";
 
 export default function Header() {
   const cartCount = useCartCount();
@@ -25,6 +26,8 @@ export default function Header() {
           <button className="p-3 text-gray-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">
             <Search className="h-5 w-5" />
           </button>
+          <AuthButton />
+
           {/* More subtle Apple-style cart button */}
           <Link href="/carrito" className="flex items-center gap-2.5 px-5 py-2.5 bg-white rounded-full hover:bg-gray-100 transition-all">
             <ShoppingCart className="h-4 w-4 text-black" />
@@ -35,9 +38,6 @@ export default function Header() {
               </span>
             )}
           </Link>
-          <button className="p-3 md:hidden text-gray-400">
-            <Menu className="h-5 w-5" />
-          </button>
         </div>
       </div>
     </header>
