@@ -54,7 +54,7 @@ export default function Home() {
         <div className="flex items-end justify-between mb-16">
           <div className="text-left">
             <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">Artículos destacados</h2>
-            <p className="mt-3 text-gray-500 font-normal">Diseños seleccionados para esta temporada.</p>
+            <p className="mt-3 text-gray-500 font-normal">Los modelos más elegidos por nuestros clientes.</p>
           </div>
           <Link href="/fundas" className="group flex items-center gap-2 text-sm font-normal text-gray-400 hover:text-white transition-colors">
             Ver todo <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
