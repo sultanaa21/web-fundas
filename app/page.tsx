@@ -20,12 +20,7 @@ export default function Home() {
 
         <div className="container relative z-20 mx-auto px-6 text-center">
           <div className="max-w-4xl mx-auto space-y-8">
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/5 backdrop-blur-md mb-8">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white/60"></span>
-              </span>
-              <span className="text-xs font-medium tracking-tight text-white/60">Estética Premium</span>
-            </div>
+
 
             <h1 className="text-7xl md:text-9xl font-semibold tracking-tight leading-none text-white select-none">
               CASELYN
