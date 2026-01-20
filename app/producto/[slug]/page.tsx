@@ -7,10 +7,10 @@ import Button from "@/components/Button";
 import { ShieldCheck, Truck, ArrowLeft, Star, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { addToCart } from "@/lib/cart";
-import { use, useState } from "react";
+import { useState } from "react";
 
-export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = use(params);
+export default function ProductPage({ params }: { params: { slug: string } }) {
+    const { slug } = params;
     const router = useRouter();
     const [addedToCart, setAddedToCart] = useState(false);
 
