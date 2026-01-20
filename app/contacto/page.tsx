@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Send } from "lucide-react";
 import Button from "@/components/Button";
 
 export default function ContactPage() {
@@ -24,24 +24,6 @@ export default function ContactPage() {
                                 <div>
                                     <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-1">Escríbenos</p>
                                     <p className="text-white text-base font-medium">support@caselyn.com</p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-6 group">
-                                <div className="h-14 w-14 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-white/50 group_hover:border-white/20 transition-all">
-                                    <Phone className="h-6 w-6" />
-                                </div>
-                                <div>
-                                    <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-1">Llámanos</p>
-                                    <p className="text-white text-base font-medium">+1 (555) 000-CASELYN</p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-6 group">
-                                <div className="h-14 w-14 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-white/50 group-hover:border-white/20 transition-all">
-                                    <MapPin className="h-6 w-6" />
-                                </div>
-                                <div>
-                                    <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-1">Visítanos</p>
-                                    <p className="text-white text-base font-medium">123 Calle Minimalista, New York, NY</p>
                                 </div>
                             </div>
                         </div>
