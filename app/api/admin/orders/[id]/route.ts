@@ -1,13 +1,36 @@
 import { NextResponse } from "next/server";
 
+import { createClient } from "@supabase/supabase-js";
+
+const ADMIN_WHITELIST = ["caselyncontact@gmail.com"];
+
 export async function PATCH(
     req: Request,
     { params }: { params: { id: string } }
 ) {
     try {
-        const auth = req.headers.get("authorization");
-        if (!auth || auth !== `Bearer ${process.env.ADMIN_TOKEN}`) {
+        const authHeader = req.headers.get("authorization");
+        if (!authHeader || !authHeader.startsWith("Bearer ")) {
             return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+        }
+
+        const token = authHeader.split(" ")[1];
+
+        // Verificar JWT
+        const supabase = createClient(
+            process.env.NEXT_PUBLIC_SUPABASE_URL!,
+            process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+        );
+
+        const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+
+        if (authError || !user) {
+            return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+        }
+
+        // Check whitelist
+        if (!ADMIN_WHITELIST.includes(user.email || "")) {
+            return NextResponse.json({ ok: false, error: "Forbidden: Not in whitelist" }, { status: 403 });
         }
 
         const { id } = params;
