@@ -2,11 +2,9 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
     try {
-        const adminToken = process.env.ADMIN_TOKEN;
-        const token = req.headers.get("x-admin-token");
-
-        if (!adminToken || token !== adminToken) {
-            return NextResponse.json({ ok: false, error: "No autorizado" }, { status: 401 });
+        const auth = req.headers.get("authorization");
+        if (!auth || auth !== `Bearer ${process.env.ADMIN_TOKEN}`) {
+            return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
         }
 
         const url = process.env.SUPABASE_URL!;

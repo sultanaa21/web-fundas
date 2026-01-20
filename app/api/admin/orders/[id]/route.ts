@@ -2,17 +2,15 @@ import { NextResponse } from "next/server";
 
 export async function PATCH(
     req: Request,
-    context: { params: Promise<{ id: string }> }
+    { params }: { params: { id: string } }
 ) {
     try {
-        const adminToken = process.env.ADMIN_TOKEN;
-        const token = req.headers.get("x-admin-token");
-
-        if (!adminToken || token !== adminToken) {
-            return NextResponse.json({ ok: false, error: "No autorizado" }, { status: 401 });
+        const auth = req.headers.get("authorization");
+        if (!auth || auth !== `Bearer ${process.env.ADMIN_TOKEN}`) {
+            return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
         }
 
-        const { id } = await context.params;
+        const { id } = params;
         const body = await req.json();
         const { status } = body ?? {};
 

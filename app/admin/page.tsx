@@ -53,7 +53,7 @@ export default function AdminPage() {
         try {
             const res = await fetch("/api/admin/orders", {
                 headers: {
-                    "x-admin-token": tk,
+                    Authorization: `Bearer ${tk}`,
                 },
                 cache: "no-store",
             });
@@ -77,7 +77,7 @@ export default function AdminPage() {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
-                    "x-admin-token": token,
+                    Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify({ status: newStatus }),
             });
