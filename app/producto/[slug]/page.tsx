@@ -1,15 +1,44 @@
-import { notFound } from "next/navigation";
+"use client";
+
+import { notFound, useRouter } from "next/navigation";
 import Image from "next/image";
 import products from "@/data/products.json";
 import Button from "@/components/Button";
 import { ShieldCheck, Truck, ArrowLeft, Star, ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import { addToCart } from "@/lib/cart";
+import { use, useState } from "react";
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-    const product = products.find((p) => p.slug === params.slug);
+export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = use(params);
+    const router = useRouter();
+    const [addedToCart, setAddedToCart] = useState(false);
+
+    const product = products.find((p) => p.slug === slug);
 
     if (!product) {
         notFound();
+    }
+
+    function handleAddToCart() {
+        addToCart({
+            id: product!.slug,
+            name: product!.name,
+            price: product!.price,
+            image: product!.image,
+        });
+        setAddedToCart(true);
+        setTimeout(() => setAddedToCart(false), 1200);
+    }
+
+    function handleBuyNow() {
+        addToCart({
+            id: product!.slug,
+            name: product!.name,
+            price: product!.price,
+            image: product!.image,
+        });
+        router.push("/checkout");
     }
 
     return (
@@ -80,14 +109,15 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                         <Button
                             className="w-full h-16 text-base gap-3"
                             variant="primary"
-                            onClick={() => alert("Added to cart")}
+                            onClick={handleAddToCart}
                         >
-                            <ShoppingCart className="h-5 w-5" /> Add to Cart
+                            <ShoppingCart className="h-5 w-5" />
+                            {addedToCart ? "Added ✓" : "Add to Cart"}
                         </Button>
                         <Button
                             className="w-full h-14 text-base font-medium"
                             variant="outline"
-                            onClick={() => alert("Redirecting to checkout")}
+                            onClick={handleBuyNow}
                         >
                             Buy Now
                         </Button>

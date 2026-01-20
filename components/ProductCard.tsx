@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import AddToCartButton from "@/components/AddToCartButton";
 
 interface ProductCardProps {
     product: {
@@ -47,6 +48,16 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <p className="mt-3 line-clamp-2 text-sm text-gray-500 flex-grow leading-relaxed">
                     {product.description}
                 </p>
+                <div className="mt-5">
+                    <AddToCartButton
+                        item={{
+                            id: product.slug,
+                            name: product.name,
+                            price: product.price,
+                            image: product.image,
+                        }}
+                    />
+                </div>
             </div>
         </div>
     );

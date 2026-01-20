@@ -1,18 +1,20 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 import Button from "@/components/Button";
-import { CreditCard, Truck, Lock, ShieldCheck, ArrowLeft } from "lucide-react";
+import { CreditCard, Truck, Lock, ShieldCheck, ArrowLeft, ShoppingBag } from "lucide-react";
 import Link from "next/link";
-
-type OrderItem = {
-    name: string;
-    model?: string;
-    qty: number;
-    price: number;
-};
+import { getCart, clearCart, type CartItem } from "@/lib/cart";
 
 export default function CheckoutPage() {
+    const router = useRouter();
+
+    // Cart state
+    const [items, setItems] = useState<CartItem[]>([]);
+    const [mounted, setMounted] = useState(false);
+
     // Form state
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -24,18 +26,12 @@ export default function CheckoutPage() {
     // UI state
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // For now we keep a placeholder cart item.
-    // Next step: replace this with the real cart content.
-    const items: OrderItem[] = useMemo(
-        () => [{ name: "Minimal Form", model: "iPhone 15", qty: 1, price: 45 }],
-        []
-    );
+    useEffect(() => {
+        setItems(getCart());
+        setMounted(true);
+    }, []);
 
-    const subtotal = useMemo(
-        () => items.reduce((acc, it) => acc + it.price * it.qty, 0),
-        [items]
-    );
-
+    const subtotal = items.reduce((acc, it) => acc + it.price * it.qty, 0);
     const total = subtotal; // shipping free
 
     function buildAddress() {
@@ -72,9 +68,14 @@ export default function CheckoutPage() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     customer_name: `${firstName} ${lastName}`.trim(),
-                    contact: email.trim(), // por ahora usamos email como contacto
+                    contact: email.trim(),
                     address: buildAddress(),
-                    items,
+                    items: items.map((x) => ({
+                        name: x.name,
+                        model: x.model,
+                        qty: x.qty,
+                        price: x.price,
+                    })),
                     total,
                 }),
             });
@@ -83,9 +84,9 @@ export default function CheckoutPage() {
             console.log("ORDER RESPONSE:", data);
 
             if (res.ok && data?.ok) {
+                clearCart();
                 alert("✅ Pedido creado y guardado en Supabase");
-                // opcional: limpiar el formulario
-                // setFirstName(""); setLastName(""); setEmail(""); setShippingAddress(""); setCity(""); setPostalCode("");
+                router.push("/");
             } else {
                 alert("❌ Error creando pedido. Mira consola (F12).");
             }
@@ -95,6 +96,41 @@ export default function CheckoutPage() {
         } finally {
             setIsSubmitting(false);
         }
+    }
+
+    // Loading state
+    if (!mounted) {
+        return (
+            <div className="container mx-auto px-6 py-32 md:px-16">
+                <div className="text-center text-white/50">Loading...</div>
+            </div>
+        );
+    }
+
+    // Empty cart
+    if (items.length === 0) {
+        return (
+            <div className="container mx-auto px-6 py-32 md:px-16">
+                <div className="flex items-center justify-between mb-20">
+                    <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">Checkout</h1>
+                </div>
+
+                <div className="relative overflow-hidden rounded-[32px] bg-white/[0.02] border border-white/5 py-40 px-8 text-center flex flex-col items-center max-w-3xl mx-auto">
+                    <div className="relative mb-12 w-28 h-28 rounded-full bg-white/[0.03] border border-white/5 flex items-center justify-center text-white/50">
+                        <ShoppingBag className="h-12 w-12" />
+                    </div>
+                    <h2 className="text-3xl font-semibold tracking-tight text-white mb-6">Cart is Empty</h2>
+                    <p className="text-gray-400 max-w-sm mx-auto text-lg mb-12">
+                        Add some products before checkout.
+                    </p>
+                    <Link href="/fundas">
+                        <Button variant="primary" className="px-12 h-14 text-base">
+                            Browse Catalog
+                        </Button>
+                    </Link>
+                </div>
+            </div>
+        );
     }
 
     return (
@@ -210,6 +246,29 @@ export default function CheckoutPage() {
                             Order Summary
                         </h2>
 
+                        {/* Cart items */}
+                        <div className="space-y-4 border-b border-white/5 pb-8 mb-5">
+                            {items.map((item) => (
+                                <div key={`${item.id}-${item.model ?? ""}`} className="flex gap-4">
+                                    <div className="relative w-14 h-14 rounded-xl bg-white/[0.03] border border-white/5 overflow-hidden shrink-0">
+                                        {item.image ? (
+                                            <Image src={item.image} alt={item.name} fill className="object-contain p-2" />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center text-white/30">
+                                                <ShoppingBag className="h-5 w-5" />
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <p className="text-sm font-medium text-white truncate">{item.name}</p>
+                                        {item.model && <p className="text-xs text-gray-500">{item.model}</p>}
+                                        <p className="text-xs text-gray-500">Qty: {item.qty}</p>
+                                    </div>
+                                    <p className="text-sm font-semibold text-white">{(item.price * item.qty).toFixed(2)}€</p>
+                                </div>
+                            ))}
+                        </div>
+
                         <div className="space-y-5 border-b border-white/5 pb-8">
                             <div className="flex justify-between text-sm font-medium">
                                 <span className="text-gray-500">Subtotal</span>
@@ -255,4 +314,3 @@ export default function CheckoutPage() {
         </div>
     );
 }
-
