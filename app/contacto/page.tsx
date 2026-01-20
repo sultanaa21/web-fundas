@@ -23,7 +23,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <p className="text-xs font-semibold uppercase tracking-widest text-white/40 mb-1">Escríbenos</p>
-                                    <p className="text-white text-base font-medium">support@caselyn.com</p>
+                                    <p className="text-white text-base font-medium">caselyncontact@gmail.com</p>
                                 </div>
                             </div>
                         </div>
