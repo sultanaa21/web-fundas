@@ -51,12 +51,12 @@ export default function AddToCartButton({ item, className = "", variant = "small
             {added ? (
                 <>
                     <Check className={variant === "large" ? "h-5 w-5" : "h-4 w-4"} />
-                    Added
+                    Añadido
                 </>
             ) : (
                 <>
                     <ShoppingCart className={variant === "large" ? "h-5 w-5" : "h-4 w-4"} />
-                    {variant === "large" ? "Add to Cart" : "Add"}
+                    {variant === "large" ? "Añadir al carrito" : "Añadir"}
                 </>
             )}
         </button>
