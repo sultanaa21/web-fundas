@@ -33,7 +33,7 @@ export default function Home() {
 
             <div className="max-w-xl mx-auto mt-10">
               <p className="text-lg md:text-xl text-gray-400 font-normal leading-relaxed mb-16">
-                Redefiniendo la protección a través de la geometría minimalista y la forma pura.
+                Fundas premium seleccionadas con cuidado para proteger tu móvil con estilo y calidad.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
