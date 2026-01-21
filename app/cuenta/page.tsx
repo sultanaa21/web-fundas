@@ -27,8 +27,16 @@ export default function ProfilePage() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-[#050505] pt-32 px-6 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+            <div className="min-h-screen bg-[#050505] pt-32 px-6">
+                <div className="max-w-4xl mx-auto">
+                    <div className="h-10 w-48 bg-white/5 rounded-xl animate-pulse mb-4" />
+                    <div className="h-4 w-64 bg-white/5 rounded-lg animate-pulse mb-12" />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {[1, 2, 3, 4].map((i) => (
+                            <div key={i} className="h-64 bg-white/5 border border-white/10 rounded-3xl animate-pulse" />
+                        ))}
+                    </div>
+                </div>
             </div>
         );
     }

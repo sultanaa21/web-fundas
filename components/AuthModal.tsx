@@ -48,7 +48,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 } else {
                     resetForm();
                     onClose();
-                    window.location.reload();
+                    // window.location.reload() is removed for perfection
                 }
             } else {
                 // First, check if email already exists by trying to sign in
@@ -76,9 +76,11 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     }
                 } else if (data?.user) {
                     // New user created successfully
-                    resetForm();
-                    onClose();
-                    window.location.reload();
+                    setSuccess("¡Registro exitoso! Iniciando sesión...");
+                    setTimeout(() => {
+                        resetForm();
+                        onClose();
+                    }, 2000);
                 } else {
                     setSuccess("¡Registro exitoso! Revisa tu correo para confirmar tu cuenta.");
                     setTimeout(() => {
