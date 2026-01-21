@@ -12,19 +12,51 @@ export function useAuth() {
         // Get initial session
         supabase.auth.getSession().then(({ data: { session } }) => {
             setUser(session?.user ?? null);
+            if (session?.user) {
+                syncProfile(session.user);
+            }
             setLoading(false);
         });
 
         // Listen for auth changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            setUser(session?.user ?? null);
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+            const currentUser = session?.user ?? null;
+            setUser(currentUser);
             setLoading(false);
+
+            // Sync profile to database when user logs in
+            if (currentUser) {
+                await syncProfile(currentUser);
+            }
         });
+
+        // Safety timeout to prevent infinite loading
+        const timeout = setTimeout(() => {
+            setLoading(false);
+        }, 2000);
 
         return () => {
             subscription.unsubscribe();
+            clearTimeout(timeout);
         };
     }, []);
+
+    // Sync user profile to profiles table
+    const syncProfile = async (user: User) => {
+        try {
+            await supabase
+                .from('profiles')
+                .upsert({
+                    id: user.id,
+                    email: user.email,
+                    full_name: user.user_metadata?.full_name || user.user_metadata?.name || '',
+                    avatar_url: user.user_metadata?.avatar_url || '',
+                    updated_at: new Date().toISOString(),
+                }, { onConflict: 'id' });
+        } catch (error) {
+            console.error('Error syncing profile:', error);
+        }
+    };
 
     const signInWithGoogle = async () => {
         const { error } = await supabase.auth.signInWithOAuth({

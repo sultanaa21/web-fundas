@@ -34,11 +34,25 @@ export default function AuthButton() {
                             className="fixed inset-0 z-40"
                             onClick={() => setShowUserMenu(false)}
                         />
-                        <div className="absolute right-0 mt-4 w-56 z-50 bg-[#0A0A0A] border border-white/10 rounded-2xl p-2 shadow-2xl">
+                        <div className="absolute right-0 mt-4 w-64 z-50 bg-[#0A0A0A] border border-white/10 rounded-2xl p-2 shadow-2xl backdrop-blur-xl">
                             <div className="px-4 py-3 border-b border-white/5 mb-2">
                                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Cuenta</p>
                                 <p className="text-sm font-medium text-white truncate">{user.email}</p>
                             </div>
+
+                            <button
+                                onClick={() => {
+                                    window.location.href = "/cuenta";
+                                    setShowUserMenu(false);
+                                }}
+                                className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-white/5 rounded-xl transition-all font-medium mb-1"
+                            >
+                                <div className="p-1.5 bg-white/5 rounded-lg group-hover:bg-white/10">
+                                    <User className="h-4 w-4" />
+                                </div>
+                                Mi Perfil
+                            </button>
+
                             <button
                                 onClick={async () => {
                                     await signOut();
@@ -47,7 +61,9 @@ export default function AuthButton() {
                                 }}
                                 className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-500 hover:bg-red-500/10 rounded-xl transition-all font-medium"
                             >
-                                <LogOut className="h-4 w-4" />
+                                <div className="p-1.5 bg-red-500/10 rounded-lg">
+                                    <LogOut className="h-4 w-4" />
+                                </div>
                                 Cerrar Sesión
                             </button>
                         </div>
