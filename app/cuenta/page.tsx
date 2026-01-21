@@ -171,10 +171,10 @@ export default function ProfilePage() {
                             await signOut();
                             window.location.href = "/";
                         }}
-                        className="flex items-center gap-2 px-8 py-4 bg-red-500/10 border border-red-500/20 text-red-500 rounded-2xl hover:bg-red-500 hover:text-white transition-all font-semibold"
+                        className="flex items-center gap-2 px-8 py-4 bg-white/5 border border-white/10 text-gray-400 rounded-2xl hover:bg-white/10 hover:text-white transition-all font-medium"
                     >
                         <LogOut className="h-5 w-5" />
-                        Cerrar Sesión Permanente
+                        Cerrar Sesión
                     </button>
                 </div>
             </div>
