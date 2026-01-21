@@ -58,7 +58,7 @@ export default function AuthButton() {
                                     onClick={async () => {
                                         await signOut();
                                         setShowUserMenu(false);
-                                        window.location.reload();
+                                        window.location.href = "/";
                                     }}
                                     className="w-full flex items-center gap-4 px-2 py-3 rounded-2xl hover:bg-red-500/5 transition-all group"
                                 >

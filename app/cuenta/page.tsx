@@ -161,7 +161,7 @@ export default function ProfilePage() {
                     <button
                         onClick={async () => {
                             await signOut();
-                            router.push("/");
+                            window.location.href = "/";
                         }}
                         className="flex items-center gap-2 px-8 py-4 bg-red-500/10 border border-red-500/20 text-red-500 rounded-2xl hover:bg-red-500 hover:text-white transition-all font-semibold"
                     >
