@@ -19,7 +19,7 @@ export default function Footer() {
                         <ul className="flex flex-col gap-3 text-sm font-normal text-gray-500">
                             <li><Link href="/fundas" className="hover:text-white transition-colors">Catálogo</Link></li>
                             <li><Link href="/collections" className="hover:text-white transition-colors">Colecciones</Link></li>
-                            <li><Link href="/novedades" className="hover:text-white transition-colors">Novedades</Link></li>
+
                         </ul>
                     </div>
                     <div>
