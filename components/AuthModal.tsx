@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X, Mail, Lock, User } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 import Button from "./Button";
 
 interface AuthModalProps {
@@ -11,7 +12,8 @@ interface AuthModalProps {
 }
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
-    const { signInWithEmail, signUpWithEmail, signInWithGoogle } = useAuth();
+    const { signInWithEmail, signUpWithEmail, signInWithGoogle, syncProfile } = useAuth();
+    const router = useRouter();
     const [isLogin, setIsLogin] = useState(true);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -45,53 +47,39 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     } else {
                         setError(error.message);
                     }
+                    setLoading(false);
                 } else {
-                    resetForm();
+                    // Success! Redirect immediately
                     onClose();
-                    // window.location.reload() is removed for perfection
+                    router.push("/cuenta");
                 }
             } else {
-                // First, check if email already exists by trying to sign in
-                const { data: loginCheck } = await signInWithEmail(email, password);
-
-                if (loginCheck?.user) {
-                    // User exists and password is correct - they should login instead
-                    setError("Cuenta ya registrada.");
-                    setLoading(false);
-                    return;
-                }
-
-                // Try to sign up
+                // Simplified registration flow
                 const { data, error } = await signUpWithEmail(email, password, name);
+
                 if (error) {
                     if (error.message.includes("already registered") || error.message.includes("User already registered")) {
                         setError("Cuenta ya registrada.");
                     } else if (error.message.includes("Password should be")) {
                         setError("La contraseña debe tener al menos 6 caracteres.");
-                    } else if (error.message.includes("Invalid login")) {
-                        // Email exists but wrong password - still means it's registered
-                        setError("Cuenta ya registrada.");
                     } else {
                         setError(error.message);
                     }
+                    setLoading(false);
                 } else if (data?.user) {
-                    // New user created successfully
-                    setSuccess("¡Registro exitoso! Iniciando sesión...");
-                    setTimeout(() => {
-                        resetForm();
-                        onClose();
-                    }, 2000);
+                    // Success! Redirect immediately
+                    // Sync profile in background (don't await)
+                    syncProfile(data.user);
+                    onClose();
+                    router.push("/cuenta");
                 } else {
+                    // Email confirmation case (if applicable)
                     setSuccess("¡Registro exitoso! Revisa tu correo para confirmar tu cuenta.");
-                    setTimeout(() => {
-                        resetForm();
-                        setIsLogin(true);
-                    }, 3000);
+                    setLoading(false);
                 }
             }
         } catch (err: any) {
             setError(err.message || "Ocurrió un error inesperado.");
-        } finally {
             setLoading(false);
         }
     }

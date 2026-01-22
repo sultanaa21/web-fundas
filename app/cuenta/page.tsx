@@ -16,14 +16,17 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function ProfilePage() {
-    const { user, loading, signOut } = useAuth();
+    const { user, loading, signOut, syncProfile } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
         if (!loading && !user) {
             router.push("/");
         }
-    }, [user, loading, router]);
+        if (user) {
+            syncProfile(user);
+        }
+    }, [user, loading, router, syncProfile]);
 
     if (loading) {
         return (

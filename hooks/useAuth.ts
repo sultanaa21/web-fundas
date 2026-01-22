@@ -8,39 +8,6 @@ export function useAuth() {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        // Get initial session
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            setUser(session?.user ?? null);
-            if (session?.user) {
-                syncProfile(session.user);
-            }
-            setLoading(false);
-        });
-
-        // Listen for auth changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
-            const currentUser = session?.user ?? null;
-            setUser(currentUser);
-            setLoading(false);
-
-            // Sync profile to database when user logs in
-            if (currentUser) {
-                await syncProfile(currentUser);
-            }
-        });
-
-        // Safety timeout to prevent infinite loading
-        const timeout = setTimeout(() => {
-            setLoading(false);
-        }, 2000);
-
-        return () => {
-            subscription.unsubscribe();
-            clearTimeout(timeout);
-        };
-    }, []);
-
     // Sync user profile to profiles table
     const syncProfile = async (user: User) => {
         try {
@@ -57,6 +24,31 @@ export function useAuth() {
             console.error('Error syncing profile:', error);
         }
     };
+
+    useEffect(() => {
+        // Get initial session
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setUser(session?.user ?? null);
+            setLoading(false);
+        });
+
+        // Listen for auth changes
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+            const currentUser = session?.user ?? null;
+            setUser(currentUser);
+            setLoading(false);
+        });
+
+        // Safety timeout to prevent infinite loading
+        const timeout = setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+
+        return () => {
+            subscription.unsubscribe();
+            clearTimeout(timeout);
+        };
+    }, []);
 
     const signInWithGoogle = async () => {
         const { error } = await supabase.auth.signInWithOAuth({
@@ -102,5 +94,6 @@ export function useAuth() {
         signInWithEmail,
         signUpWithEmail,
         signOut,
+        syncProfile,
     };
 }
