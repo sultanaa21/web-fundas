@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Mail, Lock, User } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
@@ -21,6 +21,13 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
+
+    // Prefetch redirect route for instant feel
+    useEffect(() => {
+        if (isOpen) {
+            router.prefetch("/cuenta");
+        }
+    }, [isOpen, router]);
 
     if (!isOpen) return null;
 

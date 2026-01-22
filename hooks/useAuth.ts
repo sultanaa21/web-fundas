@@ -1,23 +1,43 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabaseClient";
-import { User } from "@supabase/supabase-js";
+import { useEffect, useState, useCallback } from "react";
+import { createClient } from "@/lib/supabase/client";
+import { type User } from "@supabase/supabase-js";
 
 export function useAuth() {
+    const supabase = createClient();
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
+    const getSession = useCallback(async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+        setUser(session?.user ?? null);
+        setLoading(false);
+    }, [supabase]);
+
+    useEffect(() => {
+        getSession();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(
+            async (_event, session) => {
+                setUser(session?.user ?? null);
+                setLoading(false);
+            }
+        );
+
+        return () => {
+            subscription.unsubscribe();
+        };
+    }, [supabase, getSession]);
+
     // Sync user profile to profiles table
-    const syncProfile = async (user: User) => {
+    const syncProfile = async (userData: User) => {
         try {
             await supabase
                 .from('profiles')
                 .upsert({
-                    id: user.id,
-                    email: user.email,
-                    full_name: user.user_metadata?.full_name || user.user_metadata?.name || '',
-                    avatar_url: user.user_metadata?.avatar_url || '',
+                    id: userData.id,
+                    email: userData.email,
+                    full_name: userData.user_metadata?.full_name || userData.user_metadata?.name || '',
+                    avatar_url: userData.user_metadata?.avatar_url || '',
                     updated_at: new Date().toISOString(),
                 }, { onConflict: 'id' });
         } catch (error) {
@@ -25,36 +45,11 @@ export function useAuth() {
         }
     };
 
-    useEffect(() => {
-        // Get initial session
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            setUser(session?.user ?? null);
-            setLoading(false);
-        });
-
-        // Listen for auth changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
-            const currentUser = session?.user ?? null;
-            setUser(currentUser);
-            setLoading(false);
-        });
-
-        // Safety timeout to prevent infinite loading
-        const timeout = setTimeout(() => {
-            setLoading(false);
-        }, 2000);
-
-        return () => {
-            subscription.unsubscribe();
-            clearTimeout(timeout);
-        };
-    }, []);
-
     const signInWithGoogle = async () => {
         const { error } = await supabase.auth.signInWithOAuth({
             provider: "google",
             options: {
-                redirectTo: `${window.location.origin}`,
+                redirectTo: `${window.location.origin}/auth/callback`,
             },
         });
         return { error };
