@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Initialize Resend lazily to avoid build-time errors if key is missing
+const getResend = () => {
+    if (!process.env.RESEND_API_KEY) {
+        throw new Error("RESEND_API_KEY is not defined");
+    }
+    return new Resend(process.env.RESEND_API_KEY);
+};
 
 function isValidEmail(email: string) {
     // validación simple pero suficiente
@@ -39,6 +45,7 @@ export async function POST(req: Request) {
         const subject = `Nuevo mensaje de ${name}`
         const text = `Nombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`
 
+        const resend = getResend();
         const { error } = await resend.emails.send({
             // En free tier sin dominio verificado, usa onboarding@resend.dev
             from: "CASELYN <onboarding@resend.dev>",

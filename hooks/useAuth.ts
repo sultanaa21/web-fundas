@@ -46,10 +46,16 @@ export function useAuth() {
     };
 
     const signInWithGoogle = async () => {
+        // Ensure origin is clean and doesn't have trailing slashes or duplicate paths
+        const origin = window.location.origin.replace(/\/$/, '');
+        const redirectTo = `${origin}/auth/callback`;
+
+        console.log("Auth redirect URL:", redirectTo); // Debug logging
+
         const { error } = await supabase.auth.signInWithOAuth({
             provider: "google",
             options: {
-                redirectTo: `${window.location.origin}/auth/callback`,
+                redirectTo,
             },
         });
         return { error };
